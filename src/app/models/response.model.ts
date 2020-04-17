@@ -7,6 +7,6 @@ export interface AccessTokenResponse {
 
 export interface CaseResponse {
     date: Date;
-    cases?: BigInteger;
-    data?: BigInteger;
+    cases?: number;
+    data?: number;
 }

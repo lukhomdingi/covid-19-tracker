@@ -19,57 +19,62 @@ export class ApiService {
     });
   }
 
-  getAllCases(token: string): Promise<BigInteger> {
-    return new Promise<BigInteger>((resolve, reject) => {
+  getAllCases(token: string): Promise<number> {
+    return new Promise<number>((resolve, reject) => {
       const url = Uri.ACCESS_TOKEN;
       const headers = new HttpHeaders();
       headers.set('Authorization', `Bearer ${token}`);
-      this.http.get<CaseResponse>(url, {headers}).subscribe((response: CaseResponse) => {
-        resolve(response.cases);
+      this.http.get<CaseResponse[]>(url, {headers}).subscribe((response: CaseResponse[]) => {
+        const cases: number = response.reduce((total, x) => total + x.cases, 0);
+        resolve(cases);
       }, (error) => reject(error));
     });
   }
 
-  getConfirmedCases(token: string): Promise<BigInteger> {
-    return new Promise<BigInteger>((resolve, reject) => {
+  getConfirmedCases(token: string): Promise<number> {
+    return new Promise<number>((resolve, reject) => {
       const url = Uri.ACCESS_TOKEN;
       const headers = new HttpHeaders();
       headers.set('Authorization', `Bearer ${token}`);
-      this.http.get<CaseResponse>(url, {headers}).subscribe((response: CaseResponse) => {
-        resolve(response.data);
+      this.http.get<CaseResponse[]>(url, {headers}).subscribe((response: CaseResponse[]) => {
+        const data: number = response.reduce((total, x) => total + x.data, 0);
+        resolve(data);
       }, (error) => reject(error));
     });
   }
 
-  getSuspectedCases(token: string): Promise<BigInteger> {
-    return new Promise<BigInteger>((resolve, reject) => {
+  getSuspectedCases(token: string): Promise<number> {
+    return new Promise<number>((resolve, reject) => {
       const url = Uri.ACCESS_TOKEN;
       const headers = new HttpHeaders();
       headers.set('Authorization', `Bearer ${token}`);
-      this.http.get<CaseResponse>(url, {headers}).subscribe((response: CaseResponse) => {
-        resolve(response.data);
+      this.http.get<CaseResponse[]>(url, {headers}).subscribe((response: CaseResponse[]) => {
+        const data: number = response.reduce((total, x) => total + x.data, 0);
+        resolve(data);
       }, (error) => reject(error));
     });
   }
 
-  getDeaths(token: string): Promise<BigInteger> {
-    return new Promise<BigInteger>((resolve, reject) => {
+  getDeaths(token: string): Promise<number> {
+    return new Promise<number>((resolve, reject) => {
       const url = Uri.ACCESS_TOKEN;
       const headers = new HttpHeaders();
       headers.set('Authorization', `Bearer ${token}`);
-      this.http.get<CaseResponse>(url, {headers}).subscribe((response: CaseResponse) => {
-        resolve(response.data);
+      this.http.get<CaseResponse[]>(url, {headers}).subscribe((response: CaseResponse[]) => {
+        const data: number = response.reduce((total, x) => total + x.data, 0);
+        resolve(data);
       }, (error) => reject(error));
     });
   }
 
-  getRecovered(token: string): Promise<BigInteger> {
-    return new Promise<BigInteger>((resolve, reject) => {
+  getRecovered(token: string): Promise<number> {
+    return new Promise<number>((resolve, reject) => {
       const url = Uri.ACCESS_TOKEN;
       const headers = new HttpHeaders();
       headers.set('Authorization', `Bearer ${token}`);
-      this.http.get<CaseResponse>(url, {headers}).subscribe((response: CaseResponse) => {
-        resolve(response.data);
+      this.http.get<CaseResponse[]>(url, {headers}).subscribe((response: CaseResponse[]) => {
+        const data: number = response.reduce((total, x) => total + x.data, 0);
+        resolve(data);
       }, (error) => reject(error));
     });
   }
