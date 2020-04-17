@@ -2,8 +2,14 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const API_KEY = '';
+const API_URL = 'https://apigw.nubentos.com:443';
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: API_URL,
+  nubentos: {
+    key: API_KEY
+  }
 };
 
 /*
