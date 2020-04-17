@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { ApiService } from '@services/api.service';
-
+import { StateService } from '@services/state.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -18,7 +18,8 @@ import { AppComponent } from './app.component';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    ApiService
+    ApiService,
+    StateService
   ],
   bootstrap: [AppComponent]
 })
