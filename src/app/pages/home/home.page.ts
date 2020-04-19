@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { ApiService } from '@services/api.service';
 import { StateService } from '@services/state.service';
 
@@ -15,10 +16,15 @@ export class HomePage implements OnInit {
   private deaths: number;
   private recoveredCases: number;
   private lastUpdate: Date;
-  constructor(private apiService: ApiService, private stateService: StateService) {}
-  ngOnInit() {
+  constructor(private apiService: ApiService, private stateService: StateService, public toastController: ToastController) {}
+  async ngOnInit() {
     this.accessToken = this.stateService.AccessToken;
-    this.update();
+    try {
+      await this.update();
+    } catch (error) {
+      console.log(error);
+      this.presentToast('Something went wrong. Please try again later.');
+    }
   }
 
   get AllCases() {
@@ -53,6 +59,25 @@ export class HomePage implements OnInit {
     this.getDeaths(),
     this.getRecoveredCases()]);
     this.lastUpdate = new Date();
+  }
+
+  async refresh(event: any) {
+    try {
+      await this.update();
+    } catch (error) {
+      console.log(error);
+      this.presentToast('Something went wrong. Please try again later.');
+    } finally {
+      event.target.complete();
+    }
+  }
+
+  async presentToast(message: string, duration: number = 2000) {
+    const toast = await this.toastController.create({
+      message,
+      duration
+    });
+    toast.present();
   }
 
   async getAllCases() {
