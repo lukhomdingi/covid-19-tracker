@@ -1,5 +1,7 @@
 {
   "name": "COVID-19 Tracker",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
