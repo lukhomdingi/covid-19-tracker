@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      COVID-19 Tracker
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,18 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">COVID-19 Tracker</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="ion-padding ion-text-center">
+    <ion-text color="medium">Last updated: {{LastUpdate | date:'HH:mm:ss'}}</ion-text>
   </div>
+
+  <app-card *ngIf="AllCases" title="Cases" info="{{AllCases}}" icon="options" color="dark"></app-card>
+  <app-card *ngIf="SuspectedCases" title="Suspected cases" info="{{SuspectedCases}}" icon="person-outline" color="medium"></app-card>
+  <app-card *ngIf="ConfirmedCases" title="Confirmed cases" info="{{ConfirmedCases}}" icon="thermometer-outline" color="warning"></app-card>
+  <app-card *ngIf="Deaths" title="Deaths" info="{{Deaths}}" icon="close-circle-outline" color="danger"></app-card>
+  <app-card *ngIf="RecoveredCases" title="Recovered" info="{{RecoveredCases}}" icon="heart-half" color="success"></app-card>
+  
 </ion-content>

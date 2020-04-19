@@ -14,6 +14,7 @@ export class HomePage implements OnInit {
   private suspectedCases: number;
   private deaths: number;
   private recoveredCases: number;
+  private lastUpdate: Date;
   constructor(private apiService: ApiService, private stateService: StateService) {}
   ngOnInit() {
     this.accessToken = this.stateService.AccessToken;
@@ -40,12 +41,18 @@ export class HomePage implements OnInit {
     return this.recoveredCases;
   }
 
-  update() {
-    this.getAllCases();
-    this.getConfirmedCases();
-    this.getSuspectedCases();
-    this.getDeaths();
-    this.getRecoveredCases();
+  get LastUpdate() {
+    return this.lastUpdate;
+  }
+
+  async update() {
+    await Promise.all([
+    this.getAllCases(),
+    this.getConfirmedCases(),
+    this.getSuspectedCases(),
+    this.getDeaths(),
+    this.getRecoveredCases()]);
+    this.lastUpdate = new Date();
   }
 
   async getAllCases() {
