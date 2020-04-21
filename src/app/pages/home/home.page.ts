@@ -16,13 +16,13 @@ export class HomePage implements OnInit {
   private deaths: number;
   private recoveredCases: number;
   private lastUpdate: Date;
-  constructor(private apiService: ApiService, private stateService: StateService, public toastController: ToastController) {}
+  constructor(private apiService: ApiService, public toastController: ToastController) {}
   async ngOnInit() {
-    this.accessToken = this.stateService.AccessToken;
     try {
+      this.accessToken = await this.apiService.getAccessToken();
       await this.update();
     } catch (error) {
-      console.log(error);
+      console.error(error);
       this.presentToast('Something went wrong. Please try again later.');
     }
   }

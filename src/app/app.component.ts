@@ -13,14 +13,12 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    private stateService: StateService
+    private statusBar: StatusBar
   ) {
     this.initializeApp();
   }
 
   async initializeApp() {
-    await this.stateService.InitialiseState();
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
