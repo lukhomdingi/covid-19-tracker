@@ -11,7 +11,7 @@ export class ApiService {
       const url = Uri.ACCESS_TOKEN;
       const headers = {Authorization: `Basic ${Api.KEY}`, Accept: 'application/json'};
       this.http.post(url, {}, headers).then((response: HTTPResponse) => {
-        const data = response.data as any;
+        const data = JSON.parse(response.data) as any;
         resolve(data.access_token);
       }).catch((error) => reject(error));
     });
@@ -22,7 +22,7 @@ export class ApiService {
       const url = Uri.CASES;
       const headers = {Authorization: `Bearer ${token}`, Accept: 'application/json'};
       this.http.get(url, {}, headers).then((response: HTTPResponse) => {
-        const data = response.data as any[];
+        const data = JSON.parse(response.data) as any[];
         resolve(data.reduce((total, x) => total + x.cases, 0));
       }).catch((error) => reject(error));
     });
@@ -33,7 +33,7 @@ export class ApiService {
       const url = Uri.CONFIRMED_CASES;
       const headers = {Authorization: `Bearer ${token}`, Accept: 'application/json'};
       this.http.get(url, {}, headers).then((response: HTTPResponse) => {
-        const data = response.data as any[];
+        const data = JSON.parse(response.data) as any[];
         resolve(data.reduce((total, x) => total + x.data, 0));
       }).catch((error) => reject(error));
     });
@@ -44,7 +44,7 @@ export class ApiService {
       const url = Uri.SUSPECTED_CASES;
       const headers = {Authorization: `Bearer ${token}`, Accept: 'application/json'};
       this.http.get(url, {}, headers).then((response: HTTPResponse) => {
-        const data = response.data as any[];
+        const data = JSON.parse(response.data) as any[];
         resolve(data.reduce((total, x) => total + x.data, 0));
       }).catch((error) => reject(error));
     });
@@ -55,7 +55,7 @@ export class ApiService {
       const url = Uri.DEATHS;
       const headers = {Authorization: `Bearer ${token}`, Accept: 'application/json'};
       this.http.get(url, {}, headers).then((response: HTTPResponse) => {
-        const data = response.data as any[];
+        const data = JSON.parse(response.data) as any[];
         resolve(data.reduce((total, x) => total + x.data, 0));
       }).catch((error) => reject(error));
     });
@@ -66,7 +66,7 @@ export class ApiService {
       const url = Uri.RECOVERED;
       const headers = {Authorization: `Bearer ${token}`, Accept: 'application/json'};
       this.http.get(url, {}, headers).then((response: HTTPResponse) => {
-        const data = response.data as any[];
+        const data = JSON.parse(response.data) as any[];
         resolve(data.reduce((total, x) => total + x.data, 0));
       }).catch((error) => reject(error));
     });
