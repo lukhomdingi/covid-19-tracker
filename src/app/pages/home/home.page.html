@@ -21,10 +21,10 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <app-card *ngIf="AllCases" title="Cases" info="{{AllCases}}" icon="options" color="dark"></app-card>
-  <app-card *ngIf="SuspectedCases" title="Suspected cases" info="{{SuspectedCases}}" icon="person-outline" color="medium"></app-card>
-  <app-card *ngIf="ConfirmedCases" title="Confirmed cases" info="{{ConfirmedCases}}" icon="thermometer-outline" color="warning"></app-card>
-  <app-card *ngIf="Deaths" title="Deaths" info="{{Deaths}}" icon="close-circle-outline" color="danger"></app-card>
-  <app-card *ngIf="RecoveredCases" title="Recovered" info="{{RecoveredCases}}" icon="heart-half" color="success"></app-card>
+  <app-card *ngIf="AllCases" title="Cases" info="{{AllCases |  number}}" icon="options" color="dark"></app-card>
+  <app-card *ngIf="SuspectedCases" title="Suspected cases" info="{{SuspectedCases |  number}}" icon="person-outline" color="medium"></app-card>
+  <app-card *ngIf="ConfirmedCases" title="Confirmed cases" info="{{ConfirmedCases |  number}}" icon="thermometer-outline" color="warning"></app-card>
+  <app-card *ngIf="Deaths" title="Deaths" info="{{Deaths |  number}}" icon="close-circle-outline" color="danger"></app-card>
+  <app-card *ngIf="RecoveredCases" title="Recovered" info="{{RecoveredCases |  number}}" icon="heart-half" color="success"></app-card>
   
 </ion-content>
